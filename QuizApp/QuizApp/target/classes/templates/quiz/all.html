@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Menu</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .quiz-menu {
+      width: 300px;
+      background-color: #fff;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .quiz-menu h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .quiz-menu ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .quiz-menu ul li {
+      margin-bottom: 15px;
+    }
+
+    .quiz-menu ul li a {
+      text-decoration: none;
+      color: #555;
+      background-color: #e67e22;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      display: inline-block;
+    }
+
+    .quiz-menu ul li a:hover {
+      background-color: #d35400;
+    }
+
+  </style>
+</head>
+<body>
+<div class="quiz-menu">
+  <h1>Quiz Selection</h1>
+  <ul>
+    <div th:each="x : ${list}">
+      <li><a th:href="@{/quiz/all/{id} (id = ${x.getId()})}" th:text="${x.getName()}"></a></li>
+    </div>
+  </ul>
+</div>
+</body>
+</html>

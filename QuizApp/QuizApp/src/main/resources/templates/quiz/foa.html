@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Rules</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f6f8fa;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .quiz-container {
+      width: 80%;
+      max-width: 600px;
+      background-color: #fff;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      color: #555;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 10px;
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 40px;
+      text-align: left;
+    }
+
+    button {
+      background-color: #3498db;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+  </style>
+</head>
+<body>
+<p th:tex></p>
+<div class="quiz-container">
+  <h1 style="color: #3498db">Welcome to the Quiz!</h1>
+  <h2 style="color: #3498db" >Rules:</h2>
+  <ul>
+    <li th:text="'Quiz name is : ' + ${general_quiz.get().getName()} + ' questions.'" ></li>
+    <li th:text="'There are a total of ' + ${quiz.size()} + ' questions.'" ></li>
+    <li>Each question is multiple choice.</li>
+    <li>Only one answer is correct per question.</li>
+    <li>You have 10 minutes to complete the quiz.</li>
+  </ul>
+  <button type="submit"><a th:href="@{/quiz/all/{id}/start (id = ${general_quiz.get().getId()})}">Next</a></button>
+</div>
+</body>
+</html>

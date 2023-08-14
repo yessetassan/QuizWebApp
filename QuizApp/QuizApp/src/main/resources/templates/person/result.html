@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Awesome Boxes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+
+    .box-set {
+
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .box {
+      background-color: rgba(255,209,185,1);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      text-align: center;
+      font-weight: bold;
+      color: #333;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="box-set">
+
+  <div th:each="x : ${quiz}">
+    <ol>
+      <div class="box">
+        <p th:text="${x.getQuestion()}"></p>
+        <div th:if="${x.getAnswer() eq x.getRightAnswer()}" style="color:green;">
+          <p th:text="'Your naswer is : ' + ${x.getAnswer()}"></p>
+        </div>
+        <div th:if="${x.getAnswer() != x.getRightAnswer()}" style="color:red;">
+          <p th:text="'Your naswer is : ' + ${x.getAnswer()}"></p>
+        </div>
+
+        <p th:text="${x.getRightAnswer()}"></p>
+      </div>
+    </ol>
+
+  </div>
+</div>
+
+</body>
+</html>

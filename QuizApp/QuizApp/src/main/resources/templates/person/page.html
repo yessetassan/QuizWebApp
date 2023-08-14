@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page</title>
+    <style>
+        body {
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .user-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            text-align: center;
+            flex-direction: column;
+            margin: 50px;
+        }
+
+        .quiz {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            text-align: center;
+            flex-direction: column;
+            margin: 50px;
+        }
+
+        .user-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 60px; /* This will make the image circular */
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin: 0;
+            color: #333;
+            font-size: 24px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+            margin: 5px 0;
+        }
+
+        h3 {
+            font-size: 20px;
+            color: #444;
+            margin-top: 20px;
+        }
+
+        .interest-list {
+            list-style-type: circle;
+            text-align: left; /* Aligning the list to left */
+            padding: 0 30%; /* Centering the list items */
+        }
+
+        .interest-list li {
+            margin: 5px 0;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .login-button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 3px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .login-button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="user-card">
+    <h2 th:text="${person.getUsername()}"></h2>
+    <p  th:text=" 'Email : ' + ${person.getEmail()}"></p>
+    <p  th:text="'Works as a ' + ${person.getRole()}"></p>
+    <p  th:text="'Birth year :' + ${person.getYear().getYear()}"></p>
+</div>
+
+<div class="logout-container">
+    <a th:href="@{/quiz/all}" class="login-button">Quiz</a>
+</div>
+<br><br>
+
+<div th:each="x : ${map}">
+
+    <div class="quiz">
+        <h2 style="color: rgba(79,173,25,1);" th:text="'Quiz passed at: ' + ${x.getValue().get(0).getPosted_date()}">Jane Doe</h2>
+        <button type="button"><a th:href="@{/person/{quiz_order} (quiz_order = ${x.getKey()})}">See Details</a></button>
+    </div>
+</div>
+
+<div class="logout-container">
+    <a th:href="@{/person/logout}" class="login-button">Logout</a>
+</div>
+
+
+</body>
+</html>

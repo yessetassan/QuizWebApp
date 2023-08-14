@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-container {
+      background-color: #ffffff;
+      padding: 20px 40px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      width: 50px;
+    }
+
+    .logo h2 {
+      margin-top: 10px;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .login-button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007BFF;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .login-button:hover {
+      background-color: #0056b3;
+    }
+
+    .links {
+      margin-top: 15px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .links a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+
+  </style>
+</head>
+<body>
+
+<div class="login-container">
+  <div class="logo">
+    <h2>Sign in</h2>
+  </div>
+  <form th:action="@{/login}" th:method="POST" th:object="${person}">
+    <div class="input-group">
+      <label for="username">Username</label>
+      <input type="text" th:field="*{username}" id="username" required >
+    </div>
+
+    <div class="input-group">
+      <label for="password">Password:</label>
+      <input type="password" th:field="*{password}" id="password"  required >
+    </div>
+
+    <input type="submit" value="Sign in" class="login-button">
+  </form>
+  <div class="links">
+    <a th:href="@{/registration}">Sign Up</a>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      padding: 20px;
+    }
+
+    .quiz-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: 200px 570px;
+    }
+
+    .question {
+      display: none;
+    }
+
+    #q1 {
+      display: block;
+    }
+
+    input[type="submit"] {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+  </style>
+</head>
+<body>
+<div class="quiz-container">
+  <form th:method="POST" th:action="@{/quiz/all/{id}/start (id = ${general_quiz.get().getId()})}" th:object="${quiz_saver}">
+
+    <div class="question" id="q1">
+      <p th:text="${question}"></p>
+      <div th:each="x : ${options}">
+        <input type="radio" th:field="*{answer}" th:value="${x}" th:text="${x}"
+        th:checked="${quiz_saver.getAnswer() == x}">
+      </div>
+    </div>
+
+    <button type="submit" name="action" value="back">Back</button>
+    <button type="submit" name="action" value="next">Next</button>
+  </form>
+</div>
+</body>
+</html>
